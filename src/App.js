@@ -3,6 +3,7 @@ import './App.css';
 import Headertext from './component/Header.js';
 import Footertext from './component/Footer.js';
 import Counter from './component/Increment.js';
+import ContactForm from './component/Contact.js';
 function App() {
   return (
     // <div className="App">
@@ -27,8 +28,9 @@ function App() {
     <div>
       <Headertext />
       <div>
-        <Counter/>
-        <p>React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library for building user interfaces based on components. It is maintained by Meta and a community of individual developers and companies.</p>
+        {/* <Counter/> */}
+        <ContactForm/>
+        {/* <p>React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library for building user interfaces based on components. It is maintained by Meta and a community of individual developers and companies.</p> */}
       </div>
       <Footertext />
     </div>
