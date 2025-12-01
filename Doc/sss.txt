@@ -1,0 +1,82 @@
+### 1. **Unit Testing with Jest (Jest ke saath Unit Testing)**
+
+**Unit Testing** ka matlab hai ki aap apne React app ke chhote-chhote parts (jaise functions, components, etc.) ko test karte ho. **Jest** ek JavaScript testing framework hai, jo React applications ke liye kaafi popular hai. Jest ka main goal yeh hota hai ki aapke code ke jo chhote parts hain, wo sahi kaam kar rahe hain ya nahi, yeh verify kare.
+
+Example:
+
+```javascript
+test('This is a simple unit test', () => {
+  expect(1 + 1).toBe(2);
+});
+```
+
+### 2. **React Testing Library (RTL) (React Testing Library)**
+
+**React Testing Library (RTL)** ek important library hai jo React components ko test karne ke liye use hoti hai. Iska focus yeh hota hai ki hum user ke perspective se app ko test karein, na ki sirf implementation details pe. Is tarah se hum app ke UI aur user interactions ko properly test kar sakte hain.
+
+Example:
+
+```javascript
+import { render, screen } from '@testing-library/react';
+import MyComponent from './MyComponent';
+
+test('MyComponent renders correctly', () => {
+  render(<MyComponent />);
+  const linkElement = screen.getByText(/Hello, World!/i);
+  expect(linkElement).toBeInTheDocument();
+});
+```
+
+### 3. **Snapshot Testing (Snapshot Testing)**
+
+**Snapshot Testing** ka use yeh ensure karne ke liye hota hai ki aapke React component ka UI pehle jaisa hi dikh raha ho. Isme ek snapshot (yaani ek picture) li jaati hai aur jab bhi future mein test run hota hai, to woh picture se compare kiya jata hai. Agar UI mein koi unwanted change hota hai, to test fail ho jata hai.
+
+Example:
+
+```javascript
+import { render } from '@testing-library/react';
+import MyComponent from './MyComponent';
+
+test('Snapshot test of MyComponent', () => {
+  const { asFragment } = render(<MyComponent />);
+  expect(asFragment()).toMatchSnapshot();
+});
+```
+
+### 4. **Mocking API Calls in Tests (Tests mein API Calls ko Mock Karna)**
+
+Jab aap API calls ke saath kaam karte ho, to testing ke dauran real API se data lene ki zaroorat nahi hoti. Aap **mocking** ka use karte ho, jisse API calls ko fake (mocked) banaya ja sakta hai. Is se aap sirf yeh test karte ho ki aapki app API ke data ko sahi tareeke se process kar rahi hai ya nahi, bina actual API ko hit kiye.
+
+Example (API Mocking):
+
+```javascript
+import { render, screen, fireEvent } from '@testing-library/react';
+import MyComponent from './MyComponent';
+import axios from 'axios';
+
+jest.mock('axios'); // Mocking axios
+
+test('Data is shown after API call', async () => {
+  axios.get.mockResolvedValue({ data: { message: 'Hello World' } });
+  render(<MyComponent />);
+  
+  // Triggering an action that makes the API call
+  fireEvent.click(screen.getByText('Fetch Data'));
+  
+  const message = await screen.findByText('Hello World');
+  expect(message).toBeInTheDocument();
+});
+```
+
+### 5. **Mocking in Jest (Jest mein Mocking)**
+
+Jest mein aap easily functions, API calls, ya kisi bhi cheez ko mock kar sakte ho. Isse aap testing ke dauran real data aur functions ko na chalake sirf testing pe focus kar sakte ho. **jest.mock()** ya **jest.fn()** ka use karke aap kisi bhi dependency ko mock kar sakte ho.
+
+### Conclusion
+
+* **Unit Testing** se hum code ke chhote parts ko test karte hain.
+* **Jest** ek testing framework hai jo JavaScript ke liye kaam karta hai.
+* **React Testing Library** user ke perspective se React components ko test karti hai.
+* **Snapshot Testing** se UI changes ko track kiya jata hai.
+* **Mocking API Calls** se aap API calls ko mock karke testing kar sakte hain bina real API ko hit kiye.
+

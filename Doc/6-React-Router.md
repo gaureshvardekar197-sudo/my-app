@@ -225,5 +225,5 @@ Final
 | useContext| Global data access                             |
 | useReducer| Complex state logic                            |
 | useMemo   | Heavy calculations optimize                    |
-| useCallback| Function recreation control                    |
+| useCallback| Function recreation control                   |
 | memo      | Component re-render control                    |
